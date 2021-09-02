@@ -7,7 +7,6 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 """
 
 def bruteforce(threshold):
-    fibonaccis = [1,2]
     n1 = 1
     n2 = 2
     evens_sum = 2
@@ -15,7 +14,6 @@ def bruteforce(threshold):
         n3 = n1+n2
         if n3 % 2 == 0:
             evens_sum = evens_sum + n3
-        fibonaccis.append(n3)
         n1 = n2
         n2 = n3
     return evens_sum
