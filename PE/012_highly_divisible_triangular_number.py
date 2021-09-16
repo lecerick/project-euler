@@ -23,12 +23,11 @@ def triangleNumber(min_divisor_count):
     while True:
         #check if trin has enough divisors
         num_divisors = 1
-        for i in range(2,trin):
+        for i in range(2,trin//2+1):
             if trin % i ==0:
                 num_divisors+=1
                 if num_divisors>=min_divisor_count:
                     return trin
-        #didn't pass the check
         #calculate the next triangle number and try again
         n+=1
         trin+=n
