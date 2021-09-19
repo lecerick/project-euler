@@ -6,10 +6,10 @@ What is the largest prime factor of the number 600851475143 ?
 """
 
 def smallestPrimeFactor(number):
-    primes = [2]
+    primes = []
     # We go through all i from 2 to number/2-1 and see if they are a prime divisor of the input number
     i = 2
-    while i < number/2:
+    while i < number/2+1:
         # Assume at first that i is prime, then look for a counterexample (a divisor).
         i_has_divisor = False
         # We'll keep track of all the primes so it's easy to check if each new number i has a divisor.
@@ -42,5 +42,6 @@ def largestPrimeFactor(number):
     # The solution is the maximum of all the prime factors.
     return max(prime_factors)
 
-print(largestPrimeFactor(13195))
-print(largestPrimeFactor(600851475143))
+# print(smallestPrimeFactor(40))
+# print(largestPrimeFactor(13195))
+# print(largestPrimeFactor(600851475143))
