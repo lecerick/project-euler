@@ -23,5 +23,5 @@ def firstTenDigits(nums: list):
     firstTen = s[0:10]
     return int(firstTen)
 
-input = generateList('p013_input.txt')
+input = generateList('PE\p013_input.txt')
 print(firstTenDigits(input))

@@ -5,6 +5,8 @@ By starting at the top of the triangle in INPUT1 and moving to adjacent numbers 
 Find the maximum total from top to bottom of the triangle in INPUT2:
 NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. 
 However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
+
+***NOT COMPLETE, UNDER CONSTRUCTION***
 """
 import io
 
@@ -52,5 +54,5 @@ def maxPathSumClever(nums: list):
     # Clever method
     pass
 
-input = generateList('p018_input2.txt')
+input = generateList('PE\p018_input2.txt')
 print(maxPathSumBruteForce(input))
