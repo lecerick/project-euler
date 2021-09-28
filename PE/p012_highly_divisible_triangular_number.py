@@ -55,5 +55,6 @@ def triangleNumber(min_divisor_count):
 
 # print(primeFactorization(13195))
 # print(numDivisors(3000))
-print(triangleNumber(5))
-print(triangleNumber(500))
+
+# print(triangleNumber(5))
+# print(triangleNumber(500))
