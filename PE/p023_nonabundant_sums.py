@@ -55,6 +55,7 @@ def properDivisors(n):
         for power in range(2,max_power):
             if n % (prime_factors[i]**power) == 0:
                 answer.append(prime_factors[i]**power)
+    for i in range(0,len(answer)):
         for j in range(0,len(answer)):
             x = prime_factors[i]*answer[j]
             if n % x == 0 and x not in answer and x<n:
@@ -62,26 +63,31 @@ def properDivisors(n):
     answer.append(1)
     return answer
 
-print(sorted(primeFactorization(100000)))
-print(sorted(properDivisors(100000)))
+# m = 16132
+# print(sorted(primeFactorization(m)))
+# print(sorted(properDivisors(m)))
+# print(len(properDivisors(m))+1)
 
 # Create a list of abundant numbers
-# abundant_nums = []
-# for i in range(1,limit):
-#     # print('Proper divisors of {}: {}'.format(i,properDivisors(i)))
-#     if i<sum(properDivisors(i)):
-#         abundant_nums.append(i)
+abundant_nums = []
+for i in range(1,limit):
+    # print('Proper divisors of {}: {}'.format(i,properDivisors(i)))
+    if i<sum(properDivisors(i)):
+        abundant_nums.append(i)
 # print(abundant_nums)
 
 # Create the set of abundant sums
-# abundant_sums = set()
-# for i in range(0,len(abundant_nums)):
-#     for j in range(i+1,len(abundant_nums)):
-#         abundant_sums.add(abundant_nums[i]+abundant_nums[j])
+abundant_sums = set()
+for i in range(0,len(abundant_nums)):
+    for j in range(i,len(abundant_nums)):
+        abundant_sums.add(abundant_nums[i]+abundant_nums[j])
 
 # Calculate the sum of all nonabundant sums
-# answer=0
-# for i in range(1,limit):
-#     if i not in abundant_sums:
-#         answer+=i
-# print(answer)
+answer=0
+# nonabundant_sums = set()
+for i in range(1,limit):
+    if i not in abundant_sums:
+        answer+=i
+        # nonabundant_sums.add(i)
+# print(sorted(nonabundant_sums))
+print(answer)
