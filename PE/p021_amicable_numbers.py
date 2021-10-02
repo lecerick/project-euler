@@ -26,20 +26,20 @@ def properDivisors(n):
             if n % x == 0 and x not in answer and x<n:
                 answer.append(x)
     answer.append(1)
-    answer.sort()
+    # answer.sort()
     return answer
 
-amicable_nums = []
-for i in range(1,10000):
-    if i in amicable_nums:
-        pass
-    s = sum(properDivisors(i))
-    if i==sum(properDivisors(s)) and i!=s:
-        if i not in amicable_nums:
-            amicable_nums.append(i)
-        if s not in amicable_nums:
-            amicable_nums.append(s)
-        print('Found a pair of amicable numbers! {} and {}'.format(i, s))
+# amicable_nums = []
+# for i in range(1,10000):
+#     if i in amicable_nums:
+#         pass
+#     s = sum(properDivisors(i))
+#     if i==sum(properDivisors(s)) and i!=s:
+#         if i not in amicable_nums:
+#             amicable_nums.append(i)
+#         if s not in amicable_nums:
+#             amicable_nums.append(s)
+#         print('Found a pair of amicable numbers! {} and {}'.format(i, s))
 
-print(amicable_nums)
-print(sum(amicable_nums))
+# print(amicable_nums)
+# print(sum(amicable_nums))
