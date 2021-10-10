@@ -21,17 +21,27 @@ def cycleLength(n: int) -> int:
     """Returns the length of the recurring cycle of 1/n
     e.g. cycleLength(7) -> 6, because 1/7 = 0.(142857)"""
     digits = []
+    remainders = {}
     i = 10
+    counter = 1
     while True:
         digits.append(i//n)
-        i = i % n
-        i*=10
-        if len(digits)>100:
+        remainder = i % n
+        # print(remainders)
+        if remainder in remainders:
+            return counter - remainders[remainder]
             break
+        remainders[remainder] = counter
+        counter+=1
+        i= remainder * 10
     print('N='+str(n)+' 0.'+''.join(str(e) for e in digits))
-    # stop when you have a remainder you already saw??
-    return 0
 
-
-for i in range(1,30):
-    cycleLength(i)
+max = 0
+max_i = 0
+for i in range(2,1000):
+    print('{} cyclelength = {}'.format(i,cycleLength(i)))
+    if cycleLength(i)>max:
+        max = cycleLength(i)
+        max_i = i
+print('1/{} has the max cycle of {}'.format(max_i, max))
+print(1/max_i)
