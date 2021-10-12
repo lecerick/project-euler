@@ -4,24 +4,46 @@ Problem #27
 This problem has a lot of formulas that don't copy/paste, so check out the description here: https://projecteuler.net/problem=27
 """
 
-import math
-limit = 1000000
-
 # Generate an ordered list of all primes under the limit
-primes = []
-primeset = set({})
-i = 2
-while i < limit:
-    i_has_divisor = False
-    for j in range(0,len(primes)):
-        if i % primes[j] == 0:
-            i_has_divisor = True
-            break
-    if i_has_divisor==False:
-            primes.append(i)
-            primeset.add(i)
-    i+=1
-# print(primes)
+limit = 200000
+
+
+class PrimeList():
+    def __init__(self, limit) -> None:
+        self.primeset = set({})
+        self.limit = 2
+        self.addPrimes(limit)
+
+    def addPrimes(self, new_limit):
+        for i in range(self.limit,new_limit):
+            if not any(i%p==0 for p in self.primeset):
+                self.primeset.add(i)
+        self.limit = new_limit
+    
+    def printSorted(self):
+        print(sorted(self.primeset))
+
+P = PrimeList(1000)
+
+max = 0
+for a in range(-1000,1000):
+    for b in range(-1000,1000):
+        f_n = 2
+        n = 0
+        while f_n in P.primeset:
+            f_n = n ** 2 + a * n + b
+            # print(f_n)
+            if f_n > limit:
+                P.addPrimes(f_n+1)
+            n+=1
+        if n>max:
+            max = n
+            max_a = a
+            max_b = b
+            print('Max number of consecutive primes: {}, a = {}, b ={}'.format(max,max_a,max_b))
+        
+P.printSorted()
+print(max_a*max_b)
 
 # Tests...
 # a = 1
@@ -29,28 +51,7 @@ while i < limit:
 # n = 0
 # while True:
 #     f_n = n ** 2 + a * n + b
-#     if f_n not in primes:
+#     if f_n not in primeset:
 #         break
 #     n+=1
 # print(n)
-
-max = 0
-for a in range(-100,100):
-    for b in range(-100,100):
-        f_n = -1
-        n = 0
-        while f_n not in primeset:
-            f_n = n ** 2 + a * n + b
-            if f_n > limit:
-                print("WARNING, PRIME LIMIT EXCEEDED AT {}, n={}, a={}, b={}".format(f_n,n,a,b))
-                break
-            n+=1
-        if n>max:
-            max = n
-            max_a = a
-            max_b = b
-
-print('Max number of consecutive primes: {}, a = {}, b ={}'.format(max,max_a,max_b))
-        
-
-
