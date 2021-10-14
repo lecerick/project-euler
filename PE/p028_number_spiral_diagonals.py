@@ -14,8 +14,8 @@ What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed 
 """
 sum = 1
 startcell = 2
-for layer in range(1,4): #501
+for layer in range(1,501):
     sidelength = layer * 2 + 1
-    newcells = 4 * (sidelength - 1)
-    
-    print('{} by {} spiral with {} newcells'.format(sidelength,sidelength,newcells))
+    toprightcorner = sidelength ** 2
+    sum += 4 * toprightcorner - 6 * (sidelength -1)
+print(sum)
