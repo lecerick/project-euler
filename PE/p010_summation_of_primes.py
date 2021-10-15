@@ -35,7 +35,7 @@ def sumOfPrimes2(threshold):
 
 def sumOfPrimes3(threshold):
     """Returns the sum of all primes below the given threshold"""
-    sum = 2
+    sum = 0
     primes = set({})
     for i in range(2,threshold):
         has_divisor = False
@@ -51,7 +51,14 @@ def sumOfPrimes3(threshold):
 
 def sumOfPrimes4(threshold):
     sum = 0
-    numcheck = [True for n in range(2,threshold)]
+    not_prime = set({})
+    for n in range(2,threshold):
+        if n in not_prime:
+            pass
+        else:
+            sum+=n
+            for multiple in range(n*2,threshold,n):
+                not_prime.add(multiple)
     return sum
 
 # def sumOfPrimes5(threshold): 
@@ -70,21 +77,22 @@ def sumOfPrimes4(threshold):
 # print(str(sumOfPrimes1(2000000)))
 
 for i in range(1,6):
-    # print("10 ** {}".format(i))
+    threshold = 10 ** i#2000000
+    # print("10 ** {}".format(threshold))
     # start = timer()
-    # answer = sumOfPrimes1(10 ** i)
+    # answer = sumOfPrimes1(threshold)
     # end = timer()
     # print("METHOD1: {}  {} ".format(answer,str(timedelta(seconds=end-start))))
     # start = timer()
-    # answer = sumOfPrimes2(10 ** i)
+    # answer = sumOfPrimes2(threshold)
     # end = timer()
     # print("METHOD2: {}  {} ".format(answer,str(timedelta(seconds=end-start))))
     start = timer()
-    answer = sumOfPrimes3(10 ** i)
+    answer = sumOfPrimes3(threshold)
     end = timer()
     print("METHOD3: {}  {} ".format(answer,str(timedelta(seconds=end-start))))
     start = timer()
-    answer = sumOfPrimes4(10 ** i)
+    answer = sumOfPrimes4(threshold)
     end = timer()
     print("METHOD4: {}  {} ".format(answer,str(timedelta(seconds=end-start))))
     print("---------------------------------------------------------------------------")
