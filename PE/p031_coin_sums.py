@@ -10,32 +10,26 @@ It is possible to make £2 in the following way:
 How many different ways can £2 be made using any number of coins?
 """
 
-coin_value = [200,100,50,20,10,5,2,1]
-coin_combo = [1,0,0,0,0,0,0,0]
-ways_of_making_change = [coin_combo]
-# print(sum([a*b for a,b in zip(coin_value,coin_combo)]))
+def coinSum():
+    count = 1
+    for x100 in range(0,3):
+        sum= x100*100
+        # print(sum)
+        for x050 in range(0,(200-sum)//50+1):
+            sum= x100*100 +x050*50
+            for x020 in range(0,(200-sum)//20+1):
+                sum= x100*100 +x050*50 + x020*20
+                for x010 in range(0,(200-sum)//10+1):
+                    sum= x100*100 +x050*50 + x020*20 + x010*10
+                    for x005 in range(0,(200-sum)//5+1):
+                        sum= x100*100 +x050*50 + x020*20 + x010*10 + x005*5
+                        for x002 in range(0,(200-sum)//2+1):
+                            sum= x100*100 +x050*50 + x020*20 + x010*10 + x005*5+ x002*2
+                            x001 = max(200-sum,0)
+                            sum+= x001*1
+                            if sum==200:
+                                print([x100,x050,x020,x010,x005,x002,x001])
+                                count+=1
+    return(count)
 
-def exchange(coins):
-    smallest_exchangable=6
-    while coins[smallest_exchangable]==0:
-        smallest_exchangable-=1
-    exchanged_value = coin_value[smallest_exchangable]
-    coins[smallest_exchangable]-=1
-    coins[smallest_exchangable+1]+= exchanged_value // coin_value[smallest_exchangable+1]
-    remains = exchanged_value % coin_value[smallest_exchangable+1]
-    if smallest_exchangable!=6:
-        coins[smallest_exchangable+2]+= remains // coin_value[smallest_exchangable+2]
-    return coins
-
-count = 1
-print('Combo #{}: {} worth {}'.format(count,coin_combo,sum([a*b for a,b in zip(coin_value,coin_combo)])))
-
-while coin_combo!=[0, 0, 0, 0, 0, 0, 0, 200]:
-    coin_combo = exchange(coin_combo)
-    count+=1
-    print('Combo #{}: {} worth {}'.format(count,coin_combo,sum([a*b for a,b in zip(coin_value,coin_combo)])))
-
-
-print(count)
-# print(ways_of_making_change)
-# print(len(ways_of_making_change))
+print(coinSum())
