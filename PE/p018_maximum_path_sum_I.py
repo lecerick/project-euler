@@ -32,17 +32,29 @@ def maxPathSumBruteForce(nums: list):
     # I think I need to use a binary tree.......
     sums = []
     numrows = len(nums)
-    print(numrows)
     numpaths = 2 ** (numrows - 1)
-    print(numpaths)
-    path_index = []
-    path_values = []
-    for i in range(0,numrows):
-        path_index.append(i)
-        path_values.append(nums[i][i])
-    print(path_index)
-    print(path_values)
-    # for i in range(0,numpaths):
+    starter_path = [0 for i in range(0,numrows)]
+    print(starter_path)
+    # print(nums)
+    # print(numrows)
+    # print(numpaths)
+    # path_index = []
+    # path_values = []
+    # for i in range(0,numrows):
+    #     path_index.append(i)
+    #     path_values.append(nums[i][i])
+    # print(path_index)
+    # print(path_values)
+    # paths = []
+    # for path in numpaths:
+    #     paths.append([0])
+    # for row in range(0,numrows):
+    #     print(paths)
+    #     print(paths[0])
+    #     new_el = paths.append(0)
+    #     print(new_el)
+    #     new_paths.append(new_el)
+    #     paths = new_paths
     #     # Define the new path using tuples
     #     path = ()
     #     # Generate the sum for the path and add it to the list of sums
