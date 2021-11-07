@@ -12,10 +12,6 @@ Find the next triangle number that is also pentagonal and hexagonal.
 triangle_numbers = set({n*(n+1)//2 for n in range(1,10**6)})
 pentagonal_numbers = set({n*(3*n-1)//2 for n in range(1,10**6)})
 hexagonal_numbers = set({n*(2*n-1) for n in range(1,10**6)})
-# print(triangle_numbers)
-# print(pentagonal_numbers)
-# print(hexagonal_numbers)
-
 for n in sorted(triangle_numbers):
     if n in pentagonal_numbers and n in hexagonal_numbers:
         print(n)
