@@ -13,8 +13,7 @@ from datetime import timedelta
 
 start = timer()
 
-max = 0
-max_p = 0
+# Generate a list of primes using the seive method
 threshold = 10 ** 6
 is_prime = [True for n in range(0,threshold)]
 is_prime[0]=False
@@ -24,19 +23,23 @@ for i in range(2,threshold):
     if is_prime[i]==True:
         for multiple in range(i*2,threshold,i):
             is_prime[multiple]=False
-        for start_index in range(len(primes)):
-            for end_index in range(start_index+1,len(primes)):
-                sum_of_primes = sum([primes[i] for i in range(start_index,end_index)])
-                if sum_of_primes > i:
-                    break
-                elif sum_of_primes==i:
-                    count = end_index-start_index
-                    if count>max:
-                        max = count
-                        max_p = i
-                        # print('{} sums from {} to {} with count {}'.format(i,primes[start_index],primes[end_index], count))
         primes.append(i)
 
-end = timer()
+print(len(primes))
+# Try combinations of consecutive primes
+max = 0
+max_p = 0
+for start_index in range(len(primes)):
+    for end_index in range(start_index+1,len(primes)):
+        count = end_index-start_index
+        if count > max:
+            sum_of_primes = sum([primes[i] for i in range(start_index,end_index)])
+            if sum_of_primes > threshold: # or count <= max
+                break
+            if sum_of_primes in primes and count > max:
+                max = count
+                max_p = sum_of_primes
+                # print('{} sums from {} to {} with count {}'.format(max_p,primes[start_index],primes[end_index], max))
 
+end = timer()
 print('The answer is {}, which can be written as the sum of {} consecutive primes (TIME = {})'.format(max_p,max,str(timedelta(seconds=end-start))))
