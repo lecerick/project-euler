@@ -9,6 +9,11 @@ Consequently 56003, being the first member of this family, is the smallest prime
 Find the smallest prime which, by replacing part of the number (not necessarily adjacent digits) with the same digit, is part of an eight prime value family.
 """
 import itertools
+from timeit import default_timer as timer
+from datetime import timedelta
+
+start = timer()
+
 def replacement_list(n: int) -> list:
     # takes a number n and returns a list of all possible replacements
     # e.g. if n is 13, returns ['*3', '1*']
@@ -33,7 +38,12 @@ for i in range(2,threshold):
             is_prime[multiple]=False
         primes.append(i)
 
+answer_is_found = False
 for p in primes:
+    if answer_is_found:
+        end = timer()
+        print(str(timedelta(seconds=end-start)))
+        break
     replace_keys = replacement_list(p) #['*3','56**3']
     for x in replace_keys:
         family = []
@@ -48,5 +58,6 @@ for p in primes:
             if n in primes and len(str(n))==len(x):
                 family.append(n)
         if len(family)==8:
+            answer_is_found=True
             print('{} is the smallest of the family {}'.format(min(family),family))
             break
