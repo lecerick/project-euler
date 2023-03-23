@@ -8,8 +8,8 @@ def polynomial(x: int, y: int, coeffs: list):
 def print_polynomial(coeffs: list):
     print('{} + {}x + {}y + {}x^2 + {}y^2 + {}x^3 + {}y^3 + {}x^4 + {}y^4 + {}x^5 + {}y^5 + {}x^6 + {}y^6 + {}x^7 + {}y^7'.format(*coeffs))
 
-def convertTuple(tup):
-    return '('+','.join([str(x) for x in tup])+')'
+# def convertTuple(tup):
+#     return '('+','.join([str(x) for x in tup])+')'
 def solver(a,b,c,d,e):
     star = {
         (a,a): a,
@@ -33,7 +33,6 @@ def solver(a,b,c,d,e):
         (e,c): c,
         (e,e): a 
     }
-    polys = {}
     for coeff in coefficient_combos:
         if all([polynomial(combo[0],combo[1],coeff)==star[combo] for combo in star]):
             print("solution = ")
@@ -43,5 +42,5 @@ def solver(a,b,c,d,e):
 
 for vars in element_orders:
     Solution_found = solver(*vars)
-if Solution_found == False:
-    print("Sorry no luck")
+    if Solution_found == False:
+        print("Sorry no luck")
